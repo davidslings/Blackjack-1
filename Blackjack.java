@@ -39,8 +39,7 @@ public class Blackjack {
         String dealerCard1String = cardString(dealerCard1);
         String dealerCard2String = cardString(dealerCard2);
 
-        System.out.println(
-                "\nThe dealer shows \n" + cardString(dealerCard1) + "\nand has a card facing down \n" + faceDown());
+        System.out.println("\nThe dealer shows \n" + cardString(dealerCard1) + "\nand has a card facing down \n" + faceDown());
         dealerCard1 = Math.min(dealerCard1, 10);
         dealerCard2 = Math.min(dealerCard2, 10);
         int dealerTotal = dealerCard1 + dealerCard2;
@@ -55,42 +54,43 @@ public class Blackjack {
                 System.out.println("your total is: " + playerTotal);
                 if (playerTotal > 21) {
                     System.out.println("Bust! Player loses");
-                    System.exit(0);
+                    break;
                 }
             } else if (answer.equals("stay")) {
                 break;
             }
 
         }
-
-        System.out.println("\nDealer's turn");
-        System.out.println("\nThe dealer's cards are \n" + dealerCard1String + "\nand a \n" + dealerCard2String);
-        while (dealerTotal < 17) {
-            int newCard = drawRandomCard();
-            dealerTotal += Math.min(newCard, 10);
-            System.out.println("\nDealer gets a \n" + cardString(newCard));
+        if (playerTotal <= 21 ) {
+            System.out.println("\nDealer's turn");
+            System.out.println("\nThe dealer's cards are \n" + dealerCard1String + "\nand a \n" + dealerCard2String);
             System.out.println("\nDealer's total is " + dealerTotal);
-            if (dealerTotal >= 17) {
-                break;
+            while (dealerTotal < 17) {
+                int newCard = drawRandomCard();
+                dealerTotal += Math.min(newCard, 10);
+                System.out.println("\nDealer gets a \n" + cardString(newCard));
+                System.out.println("\nDealer's total is " + dealerTotal);
+                if (dealerTotal >= 17) {
+                    break;
+                }
             }
-        }
-        if (dealerTotal > 21) {
-            System.out.println("Bust! Dealer loses.");
-            System.exit(0);
-        } else if (playerTotal > dealerTotal) {
-            System.out.println("Player wins!");
-        } else {
-            System.out.println("Dealer wins!");
-        }
+            if (dealerTotal > 21) {
+                System.out.println("Bust! Dealer loses.");
+            } else if (playerTotal > dealerTotal) {
+                System.out.println("Player wins!");
+            } else {
+                System.out.println("Dealer wins!");
+            }
+        } 
 
         System.out.println("\nDo you want to play another game?");
         String anotherGame = scan.nextLine();
-        if (anotherGame.equals("yes")) {
-            playBlackjack();
-        } else {
-            System.out.println("Ok, goodbye.");
-            System.exit(0);
-        }
+            if (anotherGame.equals("yes")) {
+                playBlackjack();
+            } else {
+                System.out.println("Ok, goodbye.");
+                System.exit(0);
+            }
         scan.close();
     }
 
