@@ -12,23 +12,20 @@ public class Blackjack {
         System.out.println("..Ready? Press anything to begin!");
 
         scan.nextLine();
+    // Here i launch the game
         playBlackjack();
-        // System.out.println("Press 'y' if you want to play again.");
-        // String playAgain = scan.nextLine();
-        // while (playAgain.equals('y')) {
-        // playBlackJack();
-        // playAgain = scan.nextLine();
+
 
     }
 
     public static void playBlackjack() {
 
-        int card1 = drawRandomCard();
+        int card1 = drawRandomCard(); //i use the randomization function from 1-13 to get a card number
         int card2 = drawRandomCard();
 
-        System.out.println("\nYou get a \n" + cardString(card1) + "\nand a\n" + cardString(card2));
+        System.out.println("\nYou get a \n" + cardString(card1) + "\nand a\n" + cardString(card2)); // cardString is a function to make 'real' string cards out of integers .
 
-        card1 = Math.min(card1, 10);
+        card1 = Math.min(card1, 10); // The face cards in Blackjack count as 10 points. With the Math.min method you can minimize the number to the highest of two values, itself or '10' 
         card2 = Math.min(card2, 10);
         int playerTotal = card1 + card2;
         System.out.print("your total is: ");
